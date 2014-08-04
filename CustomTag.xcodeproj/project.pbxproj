@@ -22,6 +22,7 @@
 		D6D73AD5198F54A200137792 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6D73AB4198F54A100137792 /* UIKit.framework */; };
 		D6D73ADD198F54A200137792 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6D73ADB198F54A200137792 /* InfoPlist.strings */; };
 		D6D73ADF198F54A200137792 /* CustomTagTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73ADE198F54A200137792 /* CustomTagTests.m */; };
+		D6D73AEA198F5A9900137792 /* FJFlowLayoutWithAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73AE9198F5A9900137792 /* FJFlowLayoutWithAnimations.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,8 @@
 		D6D73ADA198F54A200137792 /* CustomTagTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CustomTagTests-Info.plist"; sourceTree = "<group>"; };
 		D6D73ADC198F54A200137792 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D6D73ADE198F54A200137792 /* CustomTagTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTagTests.m; sourceTree = "<group>"; };
+		D6D73AE8198F5A9800137792 /* FJFlowLayoutWithAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FJFlowLayoutWithAnimations.h; sourceTree = "<group>"; };
+		D6D73AE9198F5A9900137792 /* FJFlowLayoutWithAnimations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FJFlowLayoutWithAnimations.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +123,8 @@
 				D6D73AC5198F54A100137792 /* Main_iPad.storyboard */,
 				D6D73AC8198F54A100137792 /* WGViewController.h */,
 				D6D73AC9198F54A100137792 /* WGViewController.m */,
+				D6D73AE8198F5A9800137792 /* FJFlowLayoutWithAnimations.h */,
+				D6D73AE9198F5A9900137792 /* FJFlowLayoutWithAnimations.m */,
 				D6D73ACB198F54A100137792 /* Images.xcassets */,
 				D6D73AB7198F54A100137792 /* Supporting Files */,
 			);
@@ -254,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6D73AEA198F5A9900137792 /* FJFlowLayoutWithAnimations.m in Sources */,
 				D6D73ACA198F54A100137792 /* WGViewController.m in Sources */,
 				D6D73AC1198F54A100137792 /* WGAppDelegate.m in Sources */,
 				D6D73ABD198F54A100137792 /* main.m in Sources */,
