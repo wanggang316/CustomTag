@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Fifteen Jugglers Software. All rights reserved.
 //
 
-#import "FJFlowLayoutWithAnimations.h"
+#import "WGFlowLayoutWithAnimations.h"
 
-@interface FJFlowLayoutWithAnimations ()
+@interface WGFlowLayoutWithAnimations ()
 
 @property (nonatomic) CGSize previousSize;
 @property (nonatomic, strong) NSMutableArray *indexPathsToAnimate;
@@ -18,13 +18,14 @@
 
 @end
 
-@implementation FJFlowLayoutWithAnimations
+@implementation WGFlowLayoutWithAnimations
 
 - (void)commonInit
 {
     self.itemSize = CGSizeMake(50, 50);
-    self.minimumLineSpacing = 16;
+    self.minimumLineSpacing = 10;
     self.sectionInset = UIEdgeInsetsMake(8, 8, 8, 8);
+    self.headerReferenceSize = CGSizeMake(self.collectionView.frame.size.width, 40);
 }
 
 - (instancetype)init
@@ -53,7 +54,6 @@
 {
 
     NSArray *attrs = [super layoutAttributesForElementsInRect:rect];
-//    NSLog(@"attributes for rect %@\n%@", NSStringFromCGRect(rect), attrs);
     
     if (_pinchedItem) {
         UICollectionViewLayoutAttributes *attr = [[attrs filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"indexPath == %@", _pinchedItem]] firstObject];
@@ -78,20 +78,12 @@
 
 - (UICollectionViewLayoutAttributes*)initialLayoutAttributesForAppearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
 {
-//    NSLog(@"=====================>Appearing section : %d, row : %d", itemIndexPath.section, itemIndexPath.row);
-
-//    NSLog(@"%@ initial attr for %@", self, itemIndexPath);
     UICollectionViewLayoutAttributes *attr = [self layoutAttributesForItemAtIndexPath:itemIndexPath];
     
     if ([_indexPathsToAnimate containsObject:itemIndexPath]) {
         
-//        attr.transform = CGAffineTransformRotate(CGAffineTransformMakeScale(0.2, 0.2), M_PI);
-        
-//        CGFloat pointy = ((self.fromIndexPath.row % 5 == 0 ? self.fromIndexPath.row / 5 : (self.fromIndexPath.row / 5 + 1)) + (itemIndexPath.row % 5 == 0 ? itemIndexPath.row / 5 : (itemIndexPath.row / 5 +1) )) * 50;
-        attr.center = self.fromRect.origin;
-        
-//        attr.center = CGPointMake(CGRectGetMidX(self.collectionView.bounds), CGRectGetMaxY(self.collectionView.bounds));
-    
+//        attr.center = self.fromRect.origin;
+        attr.frame = self.fromRect;
         [_indexPathsToAnimate removeObject:itemIndexPath];
     }
 
@@ -100,14 +92,10 @@
 
 - (UICollectionViewLayoutAttributes*)finalLayoutAttributesForDisappearingItemAtIndexPath:(NSIndexPath *)itemIndexPath
 {
-//    NSLog(@"%@ final attr for %@", self, itemIndexPath);
     UICollectionViewLayoutAttributes *attr = [self layoutAttributesForItemAtIndexPath:itemIndexPath];
 
-    if ([_indexPathsToAnimate containsObject:itemIndexPath]) {
-         NSLog(@"++++++++++++++++++++++>Disappearing section : %d, row : %d", itemIndexPath.section, itemIndexPath.row);
-
-//        self.fromIndexPath = itemIndexPath;
-
+//    if ([_indexPathsToAnimate containsObject:itemIndexPath]) {
+//
 //        CATransform3D flyUpTransform = CATransform3DIdentity;
 //        flyUpTransform.m34 = 1.0 / -20000;
 //        flyUpTransform = CATransform3DTranslate(flyUpTransform, 0, 0, 19500);
@@ -118,25 +106,24 @@
 //        attr.zIndex = 1;
 //        
 //        [_indexPathsToAnimate removeObject:itemIndexPath];
-    }
-    else{
+//    }
+//    else{
 //        attr.alpha = 1.0;
-    }
+//    }
     
-//    NSLog(@"final %@", attr);
     return attr;
 }
 
 - (void)prepareLayout
 {
-    NSLog(@"%@ preparing layout", self);
+//    NSLog(@"%@ preparing layout", self);
     [super prepareLayout];
     self.previousSize = self.collectionView.bounds.size;
 }
 
 - (void)prepareForCollectionViewUpdates:(NSArray *)updateItems
 {
-    NSLog(@"%@ prepare for updated", self);
+//    NSLog(@"%@ prepare for updated", self);
     [super prepareForCollectionViewUpdates:updateItems];
     NSMutableArray *indexPaths = [NSMutableArray array];
     for (UICollectionViewUpdateItem *updateItem in updateItems) {
@@ -158,24 +145,20 @@
     }
     
     self.indexPathsToAnimate = indexPaths;
-    NSLog(@"-------->index pathes to animate : %@", self.indexPathsToAnimate);
 }
 
 - (void)finalizeCollectionViewUpdates
 {
-    NSLog(@"%@ finalize updates", self);
     [super finalizeCollectionViewUpdates];
     self.indexPathsToAnimate = nil;
 }
 
 - (void)prepareForAnimatedBoundsChange:(CGRect)oldBounds
 {
-    NSLog(@"%@ prepare animated bounds change", self);
     [super prepareForAnimatedBoundsChange:oldBounds];
 }
 
 - (void)finalizeAnimatedBoundsChange {
-    NSLog(@"%@ finalize animated bounds change", self);
     [super finalizeAnimatedBoundsChange];
 }
 
@@ -183,7 +166,6 @@
 {
     CGRect oldBounds = self.collectionView.bounds;
     if (!CGSizeEqualToSize(oldBounds.size, newBounds.size)) {
-        NSLog(@"%@ should invalidate layout", self);
         return YES;
 
     }

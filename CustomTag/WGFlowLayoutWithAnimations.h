@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FJFlowLayoutWithAnimations : UICollectionViewFlowLayout
+@interface WGFlowLayoutWithAnimations : UICollectionViewFlowLayout
 
 @property (nonatomic) CGRect fromRect;
 

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D66A908519930EAD008B9559 /* WGStore.m in Sources */ = {isa = PBXBuildFile; fileRef = D66A908219930EAD008B9559 /* WGStore.m */; };
+		D66A908619930EAD008B9559 /* WGTag.m in Sources */ = {isa = PBXBuildFile; fileRef = D66A908419930EAD008B9559 /* WGTag.m */; };
 		D6D73AB1198F54A100137792 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6D73AB0198F54A100137792 /* Foundation.framework */; };
 		D6D73AB3198F54A100137792 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6D73AB2198F54A100137792 /* CoreGraphics.framework */; };
 		D6D73AB5198F54A100137792 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6D73AB4198F54A100137792 /* UIKit.framework */; };
@@ -14,7 +16,6 @@
 		D6D73ABD198F54A100137792 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73ABC198F54A100137792 /* main.m */; };
 		D6D73AC1198F54A100137792 /* WGAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73AC0198F54A100137792 /* WGAppDelegate.m */; };
 		D6D73AC4198F54A100137792 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6D73AC2198F54A100137792 /* Main_iPhone.storyboard */; };
-		D6D73AC7198F54A100137792 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6D73AC5198F54A100137792 /* Main_iPad.storyboard */; };
 		D6D73ACA198F54A100137792 /* WGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73AC9198F54A100137792 /* WGViewController.m */; };
 		D6D73ACC198F54A100137792 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6D73ACB198F54A100137792 /* Images.xcassets */; };
 		D6D73AD3198F54A200137792 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6D73AD2198F54A200137792 /* XCTest.framework */; };
@@ -22,7 +23,7 @@
 		D6D73AD5198F54A200137792 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6D73AB4198F54A100137792 /* UIKit.framework */; };
 		D6D73ADD198F54A200137792 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D6D73ADB198F54A200137792 /* InfoPlist.strings */; };
 		D6D73ADF198F54A200137792 /* CustomTagTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73ADE198F54A200137792 /* CustomTagTests.m */; };
-		D6D73AEA198F5A9900137792 /* FJFlowLayoutWithAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73AE9198F5A9900137792 /* FJFlowLayoutWithAnimations.m */; };
+		D6D73AEA198F5A9900137792 /* WGFlowLayoutWithAnimations.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D73AE9198F5A9900137792 /* WGFlowLayoutWithAnimations.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D66A908119930EAD008B9559 /* WGStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WGStore.h; sourceTree = "<group>"; };
+		D66A908219930EAD008B9559 /* WGStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WGStore.m; sourceTree = "<group>"; };
+		D66A908319930EAD008B9559 /* WGTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WGTag.h; sourceTree = "<group>"; };
+		D66A908419930EAD008B9559 /* WGTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WGTag.m; sourceTree = "<group>"; };
 		D6D73AAD198F54A100137792 /* CustomTag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomTag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6D73AB0198F54A100137792 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D6D73AB2198F54A100137792 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -47,7 +52,6 @@
 		D6D73ABF198F54A100137792 /* WGAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WGAppDelegate.h; sourceTree = "<group>"; };
 		D6D73AC0198F54A100137792 /* WGAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WGAppDelegate.m; sourceTree = "<group>"; };
 		D6D73AC3198F54A100137792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		D6D73AC6198F54A100137792 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		D6D73AC8198F54A100137792 /* WGViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WGViewController.h; sourceTree = "<group>"; };
 		D6D73AC9198F54A100137792 /* WGViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WGViewController.m; sourceTree = "<group>"; };
 		D6D73ACB198F54A100137792 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -56,8 +60,8 @@
 		D6D73ADA198F54A200137792 /* CustomTagTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CustomTagTests-Info.plist"; sourceTree = "<group>"; };
 		D6D73ADC198F54A200137792 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D6D73ADE198F54A200137792 /* CustomTagTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomTagTests.m; sourceTree = "<group>"; };
-		D6D73AE8198F5A9800137792 /* FJFlowLayoutWithAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FJFlowLayoutWithAnimations.h; sourceTree = "<group>"; };
-		D6D73AE9198F5A9900137792 /* FJFlowLayoutWithAnimations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FJFlowLayoutWithAnimations.m; sourceTree = "<group>"; };
+		D6D73AE8198F5A9800137792 /* WGFlowLayoutWithAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WGFlowLayoutWithAnimations.h; sourceTree = "<group>"; };
+		D6D73AE9198F5A9900137792 /* WGFlowLayoutWithAnimations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WGFlowLayoutWithAnimations.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D66A908019930E94008B9559 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D66A908119930EAD008B9559 /* WGStore.h */,
+				D66A908219930EAD008B9559 /* WGStore.m */,
+				D66A908319930EAD008B9559 /* WGTag.h */,
+				D66A908419930EAD008B9559 /* WGTag.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		D6D73AA4198F54A100137792 = {
 			isa = PBXGroup;
 			children = (
@@ -117,14 +132,14 @@
 		D6D73AB6198F54A100137792 /* CustomTag */ = {
 			isa = PBXGroup;
 			children = (
+				D66A908019930E94008B9559 /* Models */,
 				D6D73ABF198F54A100137792 /* WGAppDelegate.h */,
 				D6D73AC0198F54A100137792 /* WGAppDelegate.m */,
 				D6D73AC2198F54A100137792 /* Main_iPhone.storyboard */,
-				D6D73AC5198F54A100137792 /* Main_iPad.storyboard */,
 				D6D73AC8198F54A100137792 /* WGViewController.h */,
 				D6D73AC9198F54A100137792 /* WGViewController.m */,
-				D6D73AE8198F5A9800137792 /* FJFlowLayoutWithAnimations.h */,
-				D6D73AE9198F5A9900137792 /* FJFlowLayoutWithAnimations.m */,
+				D6D73AE8198F5A9800137792 /* WGFlowLayoutWithAnimations.h */,
+				D6D73AE9198F5A9900137792 /* WGFlowLayoutWithAnimations.m */,
 				D6D73ACB198F54A100137792 /* Images.xcassets */,
 				D6D73AB7198F54A100137792 /* Supporting Files */,
 			);
@@ -237,7 +252,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6D73AC7198F54A100137792 /* Main_iPad.storyboard in Resources */,
 				D6D73ACC198F54A100137792 /* Images.xcassets in Resources */,
 				D6D73AC4198F54A100137792 /* Main_iPhone.storyboard in Resources */,
 				D6D73ABB198F54A100137792 /* InfoPlist.strings in Resources */,
@@ -259,8 +273,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6D73AEA198F5A9900137792 /* FJFlowLayoutWithAnimations.m in Sources */,
+				D66A908619930EAD008B9559 /* WGTag.m in Sources */,
+				D6D73AEA198F5A9900137792 /* WGFlowLayoutWithAnimations.m in Sources */,
 				D6D73ACA198F54A100137792 /* WGViewController.m in Sources */,
+				D66A908519930EAD008B9559 /* WGStore.m in Sources */,
 				D6D73AC1198F54A100137792 /* WGAppDelegate.m in Sources */,
 				D6D73ABD198F54A100137792 /* main.m in Sources */,
 			);
@@ -299,14 +315,6 @@
 				D6D73AC3198F54A100137792 /* Base */,
 			);
 			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		D6D73AC5198F54A100137792 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D6D73AC6198F54A100137792 /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		D6D73ADB198F54A200137792 /* InfoPlist.strings */ = {
@@ -477,6 +485,7 @@
 				D6D73AE4198F54A200137792 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D6D73AE5198F54A200137792 /* Build configuration list for PBXNativeTarget "CustomTagTests" */ = {
 			isa = XCConfigurationList;
@@ -485,6 +494,7 @@
 				D6D73AE7198F54A200137792 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -7,15 +7,17 @@
 //
 
 #import "WGViewController.h"
-#import "FJFlowLayoutWithAnimations.h"
+#import "WGFlowLayoutWithAnimations.h"
+#import "WGStore.h"
 
 @interface WGViewController ()<UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
-@property (nonatomic) NSInteger sectionCount;
-@property (nonatomic, strong) NSMutableArray *itemCounts;
-@property (nonatomic, strong) FJFlowLayoutWithAnimations *smallLayout;
+@property (nonatomic, strong) WGFlowLayoutWithAnimations *flowLayout;
+
+@property (nonatomic, strong) NSMutableArray *sections;
+
 @end
 
 @implementation WGViewController
@@ -23,77 +25,56 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.sectionCount = 2;
-    self.itemCounts = [NSMutableArray arrayWithArray:@[@(9), @(7)]];
+    //数据源
+    self.sections = [[NSMutableArray alloc]initWithObjects:[WGStore customTags], [WGStore noCustomTags], nil];
     
-    self.smallLayout = [[FJFlowLayoutWithAnimations alloc] init];
-    _smallLayout.itemSize = CGSizeMake(50, 50);
+    self.flowLayout = [[WGFlowLayoutWithAnimations alloc] init];
+    _flowLayout.itemSize = CGSizeMake(140, 30);
     
-    _collectionView.collectionViewLayout = _smallLayout;
+    _collectionView.collectionViewLayout = _flowLayout;
     
     [self.view addSubview:_collectionView];
     
-    UIBarButtonItem *insertItem = [[UIBarButtonItem alloc]
-                                   initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                   target:self
-                                   action:@selector(insertItem)];
-    
-    UIBarButtonItem *deleteItem = [[UIBarButtonItem alloc]
-                                   initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
-                                   target:self
-                                   action:@selector(deleteItem)];
-    
-    self.navigationItem.rightBarButtonItems = @[insertItem, deleteItem];
-}
-
-
-- (void)insertItem:(NSInteger)section
-{
-    NSInteger randomSection = (section == 0 ? 1 : 0);//arc4random_uniform(_sectionCount);
-    
-    NSInteger item = [_itemCounts[randomSection] integerValue] + 1;
-    _itemCounts[randomSection] = @(item);
-    
-    [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:item-1 inSection:randomSection]]];
-}
-
-- (void)deleteItem:(NSInteger)section
-{
-    NSInteger randomSection = section;//arc4random_uniform(_sectionCount);
-    NSInteger item = [_itemCounts[randomSection] integerValue];
-    
-    if (item) {
-        _itemCounts[randomSection] = @(item-1);
-        [self.collectionView deleteItemsAtIndexPaths:@[[NSIndexPath indexPathForItem:item-1 inSection:randomSection]]];
-    }
-    else {
-        NSInteger totalItems = 0;
-        for (NSNumber *num in _itemCounts) {
-            totalItems += [num integerValue];
-        }
-        if (totalItems) {
-            [self deleteItem:section];
-        }
-        
-    }
     
 }
 
-- (void)moveFromItem:(NSIndexPath *)fromIndexPath toItem:(NSIndexPath *)toIndexPath {
+
+- (void)moveItemFromIndexPath:(NSIndexPath *)fromIndexPath {
+    
+    
+    NSInteger toSectionIndex = fromIndexPath.section == 0 ? 1 : 0;
+    NSIndexPath *toIndexPath;
+    
+    NSMutableArray *fromSection = [[self.sections objectAtIndex:fromIndexPath.section] mutableCopy];
+    NSMutableArray *toSection = [[self.sections objectAtIndex:toSectionIndex] mutableCopy];
+    
+    WGTag *moveTag = [fromSection objectAtIndex:fromIndexPath.row];
+    
+    [fromSection removeObjectAtIndex:fromIndexPath.row];
+    [toSection addObject:moveTag];
+   
+    self.sections[fromIndexPath.section] = [fromSection copy];
+    self.sections[toSectionIndex] = [toSection copy];
+    
+    
+    toIndexPath = [NSIndexPath indexPathForItem:toSection.count-1 inSection:toSectionIndex];
+    
+    
     [self.collectionView moveItemAtIndexPath:fromIndexPath toIndexPath:toIndexPath];
 }
+
 
 
 #pragma mark - Collection View Data Source
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return _sectionCount;
+    return self.sections.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [_itemCounts[section] integerValue];
+    return [[self.sections objectAtIndex:section] count];
 }
 
 - (UICollectionViewCell*)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -101,38 +82,65 @@
     static NSString *CellIdentifier = @"DemoCell";
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    NSInteger itemCount = [self collectionView:collectionView numberOfItemsInSection:indexPath.section];
-    CGFloat colorValue = 1.0-(indexPath.item+1.0)/(2*itemCount);
+    UILabel *tagNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
+    tagNameLabel.font = [UIFont systemFontOfSize:15];
+    tagNameLabel.textColor = [UIColor darkGrayColor];
+    tagNameLabel.textAlignment = NSTextAlignmentCenter;
+    tagNameLabel.layer.masksToBounds = YES;
+    tagNameLabel.layer.cornerRadius = 6;
+    tagNameLabel.layer.borderWidth = 1;
+    tagNameLabel.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    [cell.contentView addSubview:tagNameLabel];
     
-    cell.backgroundColor = [UIColor colorWithRed:(indexPath.section==0)?colorValue:0.0
-                                           green:(indexPath.section==1)?colorValue:0.0
-                                            blue:(indexPath.section==2)?colorValue:0.0
-                                           alpha:1.0];
+    WGTag *tag = [[self.sections objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     
+    tagNameLabel.text = tag.tagName;
+    
+//    cell.backgroundColor = [UIColor groupTableViewBackgroundColor];
     return cell;
 }
+
+
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    
+    UICollectionReusableView *sectionHeaderView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"SectionHeader" forIndexPath:indexPath];
+    
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, sectionHeaderView.frame.size.width, sectionHeaderView.frame.size.height)];
+    titleLabel.font = [UIFont systemFontOfSize:17];
+    titleLabel.textAlignment = NSTextAlignmentCenter;
+
+    
+    if (indexPath.section == 0) {
+        titleLabel.textColor = [UIColor redColor];
+        titleLabel.text = @"我的订阅";
+    } else {
+        titleLabel.textColor = [UIColor grayColor];
+       titleLabel.text = @"标签";
+    }
+    
+    
+    [sectionHeaderView addSubview:titleLabel];
+    
+    return sectionHeaderView;
+}
+
 
 #pragma mark - Collection View Delegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"------------------>selected section : %d, row : %d", indexPath.section, indexPath.row);
+    
     UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
     CGRect frame = cell.frame;
-    self.smallLayout.fromRect = frame;
-    NSLog(@"cell frame point x : %f, point y : %f", frame.origin.x, frame.origin.y);
-//    if (indexPath.section == 1) {
-    [self deleteItem:indexPath.section];
-    [self insertItem:indexPath.section];
-//    }
+    self.flowLayout.fromRect = frame;
     
-    
+    [self moveItemFromIndexPath:indexPath];
     
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end
